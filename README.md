@@ -40,15 +40,13 @@ Follow the steps below to get started with Repochat:
 
 ### Cloud Usage
 
-1. Open the [RepoChat](https://repochat.streamlit.app/) deployed on Streamlit.
+1. Configure your preferred language model and embeddings method. Enter all the tokens necessary. Your credentials are only stored in your session state.
 
-2. Configure your preferred language model and embeddings method. Enter all the tokens necessary. Your credentials are only stored in your session state.
+2. Input the GitHub repository link you want to discuss. Repochat will fetch all files from the repository, chunk them into smaller files, and calculate and store their embeddings in the Deeplake Vector Database.
 
-3. Input the GitHub repository link you want to discuss. Repochat will fetch all files from the repository, chunk them into smaller files, and calculate and store their embeddings in the Deeplake Vector Database.
+3. Start asking questions! Repochat will retrieve relevant documents from the vector database and send them, along with your question, to the Language Model to provide answers.
 
-4. Start asking questions! Repochat will retrieve relevant documents from the vector database and send them, along with your question, to the Language Model to provide answers.
-
-5. Enjoy interactive conversations about the GitHub repository with the retained memory of the chatbot.
+4. Enjoy interactive conversations about the GitHub repository with the retained memory of the chatbot.
 
 ### Local Usage
 
