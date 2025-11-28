@@ -3,6 +3,7 @@ services:
   - type: web
     name: repo-chat-backend
     env: docker
+    plan: free
     rootDir: backend
     envVars:
       - key: PYTHON_VERSION
@@ -17,6 +18,7 @@ services:
   - type: web
     name: repo-chat-frontend
     env: docker
+    plan: free
     rootDir: frontend
     envVars:
       - key: VITE_API_URL
