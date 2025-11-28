@@ -1,4 +1,4 @@
-# Repo Chat - Client-Server Application
+# RepoChat - Client-Server Application
 
 A modern full-stack application that allows you to chat with any GitHub repository using AI-powered RAG (Retrieval-Augmented Generation).
 
@@ -6,7 +6,7 @@ A modern full-stack application that allows you to chat with any GitHub reposito
 
 - 🔍 **Repository Analysis**: Clone and analyze any public GitHub repository
 - 📁 **File Explorer**: Visual tree view of the repository structure
-- 💬 **AI Chat**: Ask questions about the codebase using Google Gemini 1.5 Flash
+- 💬 **AI Chat**: Ask questions about the codebase using Google Gemini 2.5 Flash
 - 🎨 **Modern UI**: Beautiful, responsive React interface with Tailwind CSS
 
 ## Tech Stack
@@ -15,7 +15,7 @@ A modern full-stack application that allows you to chat with any GitHub reposito
 - **FastAPI**: Modern, high-performance web framework
 - **LangChain**: RAG pipeline and conversational AI
 - **ChromaDB**: Vector database for embeddings
-- **Google Gemini**: Gemini 1.5 Flash for chat and Gemini embeddings for vector search
+- **Google Gemini**: Gemini 2.5 Flash for chat and Gemini embeddings for vector search
 
 ### Frontend
 - **React**: UI library
