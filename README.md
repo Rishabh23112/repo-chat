@@ -1,88 +1,103 @@
-# Repochat - GitHub Repository Interactive Chatbot
+# Repo Chat - Client-Server Application
 
-Repochat is an interactive chatbot that allows you to engage in dynamic conversations about GitHub repositories. Powered by a Large Language Models, you have the freedom to choose between two different options for the Language Model:
-
-1. **OpenAI GPT-3.5-turbo model**: Utilize OpenAI's cutting-edge language model to have conversations about GitHub repositories.
-
-2. **Hugging Face Model**: Alternatively, you can opt for any model available on Hugging Face (preferably models like [CodeLlama-Instruct](https://huggingface.co/codellama/CodeLlama-13b-Instruct-hf)). However, this choice comes with the added responsibility of creating an endpoint for your chosen model on Hugging Face. You'll need to provide the endpoint URL and Hugging Face token for this option.
-
-
-
-
-
-
-### Cloud Branch
-
-This branch of Repochat primarily relies on API calls to external services for model inference and storage. It's well-suited for those who prefer a cloud-based solution and don't want to set up a local environment.
+A modern full-stack application that allows you to chat with any GitHub repository using AI-powered RAG (Retrieval-Augmented Generation).
 
 ## Features
 
-- Choose your preferred Language Model:
-  - OpenAI GPT models
-  - Hugging Face Model (with custom endpoint)
+- 🔍 **Repository Analysis**: Clone and analyze any public GitHub repository
+- 📁 **File Explorer**: Visual tree view of the repository structure
+- 💬 **AI Chat**: Ask questions about the codebase using Google Gemini 1.5 Flash
+- 🎨 **Modern UI**: Beautiful, responsive React interface with Tailwind CSS
 
-- Choose between two methods for calculating embeddings:
-  - OpenAI Embeddings
-  - Hugging Face's [Sentence Transformers](https://huggingface.co/docs/hub/sentence-transformers)
+## Tech Stack
 
-- Utilize the power of Activeloop's Deeplake Vector Database for storing and retrieving embeddings.
+### Backend
+- **FastAPI**: Modern, high-performance web framework
+- **LangChain**: RAG pipeline and conversational AI
+- **ChromaDB**: Vector database for embeddings
+- **Google Gemini**: Gemini 1.5 Flash for chat and Gemini embeddings for vector search
 
-## Getting Started
+### Frontend
+- **React**: UI library
+- **Vite**: Fast build tool
+- **Tailwind CSS**: Utility-first CSS framework
+- **Axios**: HTTP client
+- **Lucide React**: Beautiful icons
 
-Follow the steps below to get started with Repochat:
+## Quick Start
 
 ### Prerequisites
+- Python 3.8+
+- Node.js 16+
+- Git
+- Google Gemini API Key (free tier available at https://ai.google.dev)
 
-- OpenAI API Key (for GPT-3.5-turbo and OpenAI Embeddings)
-- Hugging Face Endpoint (if using a custom model)
-- Hugging Face Token (if using a custom model)
-- ActiveLoop API (for Deeplake Vector Database)
+### Option 1: Using Batch Scripts (Windows)
 
-### Cloud Usage
-
-1. Configure your preferred language model and embeddings method. Enter all the tokens necessary. Your credentials are only stored in your session state.
-
-2. Input the GitHub repository link you want to discuss. Repochat will fetch all files from the repository, chunk them into smaller files, and calculate and store their embeddings in the Deeplake Vector Database.
-
-3. Start asking questions! Repochat will retrieve relevant documents from the vector database and send them, along with your question, to the Language Model to provide answers.
-
-4. Enjoy interactive conversations about the GitHub repository with the retained memory of the chatbot.
-
-### Local Usage
-
-If you prefer to run the RepoChat project locally and avoid entering your API tokens into Streamlit, you can follow these steps:
-
-1. Create a virtual environment and activate on your local machine to isolate the project's dependencies
-
+1. **Start Backend** (in one terminal):
    ```bash
-   python -m venv repo_env
-   source repo_env/bin/activate
+   start_backend.bat
    ```
 
-2. Clone the Repochat repository and navigate to the project directory
-
+2. **Start Frontend** (in another terminal):
    ```bash
-   git clone -b cloud https://github.com/Rishabh23112/repo-chat.git
-   cd repochat
+   start_frontend.bat
    ```
 
-3. Install the required Python packages using `pip`
+### Option 2: Manual Setup
 
+1. **Backend Setup**:
    ```bash
+   cd backend
    pip install -r requirements.txt
+   uvicorn main:app --reload --host 0.0.0.0 --port 8000
    ```
 
-4. Run RepoChat Locally
-
+2. **Frontend Setup** (in a new terminal):
    ```bash
-   streamlit run app.py
+   cd frontend
+   npm install
+   npm run dev
    ```
 
-Rest all instructions remain same as [Cloud Usage](#cloud-usage)
+3. **Access the Application**:
+   - Open your browser to `http://localhost:5173`
+   - Enter a GitHub repository URL (e.g., `https://github.com/username/repo`)
+   - Enter your Google Gemini API Key (get one free at https://ai.google.dev)
+   - Click "Start Chatting"
 
-By following these instructions, you can use RepoChat without relying on a cloud-based deployment, keeping your API tokens and credentials secure on your local environment.
+## Usage
 
-## License
+1. **Enter Repository URL**: Provide any public GitHub repository URL
+2. **Add API Key**: Enter your Google Gemini API key (free tier available)
+3. **Process Repository**: The app will clone and process the repository
+4. **Explore Files**: Browse the repository structure in the left sidebar
+5. **Ask Questions**: Use the chat interface to ask questions about the code
 
-This project is licensed under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0). For details, see the [LICENSE](LICENSE) file.
-Please note that this is a change from the previous license, and it's important to review the terms and conditions of the new license.
+## Project Structure
+
+```
+repo-chat/
+├── backend/              # FastAPI backend
+│   ├── main.py          # API endpoints
+│   ├── rag.py           # RAG logic
+│   ├── utils.py         # Utility functions
+│   └── requirements.txt # Python dependencies
+├── frontend/            # React frontend
+│   ├── src/
+│   │   ├── components/  # React components
+│   │   ├── App.jsx      # Main app component
+│   │   └── main.jsx     # Entry point
+│   ├── package.json     # Node dependencies
+│   └── vite.config.js   # Vite configuration
+└── README.md           # This file
+```
+
+## API Endpoints
+
+- `GET /`: Health check
+- `POST /process-repo`: Clone repository and generate file tree
+  - Body: `{ "url": "repo_url", "gemini_api_key": "your_key" }`
+- `POST /chat`: Ask questions about the repository
+  - Body: `{ "repo_name": "name", "question": "query", "chat_history": [], "gemini_api_key": "your_key" }`
+
