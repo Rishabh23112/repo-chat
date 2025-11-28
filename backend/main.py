@@ -11,7 +11,11 @@ import os
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[os.getenv("FRONTEND_URL", "http://localhost:5173")],
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:3000",
+        f"https://{os.getenv('FRONTEND_URL')}" if os.getenv("FRONTEND_URL") and not os.getenv("FRONTEND_URL").startswith("http") else os.getenv("FRONTEND_URL", "http://localhost:5173")
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

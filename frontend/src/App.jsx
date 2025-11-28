@@ -4,7 +4,10 @@ import Dashboard from './components/Dashboard';
 import LandingPage from './components/LandingPage';
 
 // Configure axios base URL
-axios.defaults.baseURL = 'http://localhost:8000';
+const apiUrl = import.meta.env.VITE_API_URL;
+axios.defaults.baseURL = apiUrl
+    ? (apiUrl.startsWith('http') ? apiUrl : `https://${apiUrl}`)
+    : 'http://localhost:8000';
 
 function App() {
     const [view, setView] = useState('landing'); // 'landing' | 'dashboard'
