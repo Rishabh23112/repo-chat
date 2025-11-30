@@ -10,3 +10,4 @@ langchain-google-genai==1.0.10
 sentence-transformers
 python-dotenv
 langchain-text-splitters
+pysqlite3-binary ; sys_platform == 'linux'

@@ -1,3 +1,12 @@
+import sys
+import os
+
+# Fix for ChromaDB on Render (requires newer SQLite)
+if sys.platform == 'linux':
+    __import__('pysqlite3')
+    import sys
+    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 from fastapi import FastAPI, HTTPException, Header
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -14,8 +23,8 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",
         "http://localhost:3000",
-        f"https://{os.getenv('FRONTEND_URL')}" if os.getenv("FRONTEND_URL") and not os.getenv("FRONTEND_URL").startswith("http") else os.getenv("FRONTEND_URL", "http://localhost:5173")
     ],
+    allow_origin_regex=r"https://.*\.onrender\.com",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
