@@ -1,12 +1,12 @@
 fastapi
 uvicorn
-langchain
-langchain-community
+langchain==0.2.16
+langchain-community==0.2.16
 chromadb
 gitpython
 pydantic
 python-multipart
-langchain-google-genai
+langchain-google-genai==1.0.10
 sentence-transformers
 python-dotenv
 langchain-text-splitters
