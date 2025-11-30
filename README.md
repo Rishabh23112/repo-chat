@@ -2,6 +2,13 @@
 
 A modern full-stack application that allows you to chat with any GitHub repository using AI-powered RAG (Retrieval-Augmented Generation).
 
+## Video
+
+
+https://github.com/user-attachments/assets/0c360aa7-4f6b-4640-9223-9d455937b4df
+
+
+
 ## Features
 
 - 🔍 **Repository Analysis**: Clone and analyze any public GitHub repository
