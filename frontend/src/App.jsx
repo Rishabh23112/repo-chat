@@ -6,7 +6,9 @@ import LandingPage from './components/LandingPage';
 // Configure axios base URL
 const apiUrl = import.meta.env.VITE_API_URL;
 axios.defaults.baseURL = apiUrl
-    ? (apiUrl.startsWith('http') ? apiUrl : `https://${apiUrl}`)
+    ? (apiUrl.startsWith('http')
+        ? apiUrl
+        : `https://${apiUrl}${apiUrl.includes('.') ? '' : '.onrender.com'}`)
     : 'http://localhost:8000';
 
 function App() {
